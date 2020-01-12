@@ -12,13 +12,15 @@ function Register() {
   var password = passwordElement.value;
 
   if (listUsers.length === 0) {
-    user = {
-      name: login,
-      password: password
-    };
-    listUsers.push(user);
-    saveToStorage();
-    console.log(listUsers);
+    if (loginElement.value !== "" && passwordElement.value !== "") {
+      user = {
+        name: login,
+        password: password
+      };
+      listUsers.push(user);
+      saveToStorage();
+      console.log(listUsers);
+    }
   } else if (loginElement.value !== "" && passwordElement.value !== "") {
     if (listUsers.find(item => item.name === loginElement.value)) {
       console.log('Usuário já existe!');
