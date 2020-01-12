@@ -12,23 +12,32 @@ function Register(){
         var login = loginElement.value;
         var password = passwordElement.value;
         
-        user = {name: login, password: password};
-        listUsers.push(user);
-        saveToStorage();
-        console.log(listUsers);
+        if(listUsers.length === 0){
+            user = {name: login, password: password};
+            listUsers.push(user);
+            saveToStorage();
+            console.log(listUsers);
+        }else {
+            if(listUsers.find(item => item.name === loginElement.value)){
+                console.log('Usuário já existe!');
+            }else{
+                user = {name: login, password: password};
+                listUsers.push(user);
+                saveToStorage();
+                console.log(listUsers);
+            }
+        } 
 }
  
 function Login(){
     if(listUsers.length === 0){
         console.log('Nenhum usuário cadastrado');
     }else{
-        listUsers.forEach(function(value){
-            if(loginElement.value === value.name && passwordElement.value === value.password){
-                console.log('Logado com sucesso!');
-            }else {
-                console.log('Nome ou senha incorretos!');
-            }
-        })
+        if(listUsers.find(user => loginElement.value === user.name && passwordElement.value === user.password)){
+            console.log('Logado com sucesso!');
+        }else{
+            console.log('Usuário ou senha incorretos!');
+        }
     }
 }
 
