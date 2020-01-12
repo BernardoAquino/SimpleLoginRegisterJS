@@ -19,7 +19,7 @@ function Register() {
     listUsers.push(user);
     saveToStorage();
     console.log(listUsers);
-  } else {
+  } else if (loginElement.value !== "" && passwordElement.value !== "") {
     if (listUsers.find(item => item.name === loginElement.value)) {
       console.log('Usuário já existe!');
     } else {
@@ -31,6 +31,8 @@ function Register() {
       saveToStorage();
       console.log(listUsers);
     }
+  } else {
+    console.log('Login ou senha inválida!');
   }
 }
 
